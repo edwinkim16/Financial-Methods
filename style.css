@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.field-container {
+    margin-top: 20px;
+}
+.field-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+.field-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.expense {
+    color: red;
+}
+.income {
+    color: green;
+}
+.button-container {
+    text-align: center;
+}
+.button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
