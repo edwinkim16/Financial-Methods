@@ -11,3 +11,19 @@ function addIncomeField() {
             `;
             incomeFieldsContainer.appendChild(fieldContainer);
 }
+
+function calculateAPandROI() {
+    const years = document.getElementById('years').value;
+    let totalIncome = 0;
+    let totalExpenses = 0;
+
+    for (let i = 0; i <= fieldCount; i++) {
+        const amount = parseFloat(document.getElementById(`income${i}`).value);
+        if (amount < 0) {
+            totalExpenses += Math.abs(amount);
+        } else {
+            totalIncome += amount;
+        }
+    }
+
+}    
