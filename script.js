@@ -25,16 +25,16 @@ function generateProjectForms() {
     }
 }
 
-function addIncomeField() {
-            fieldCount++;
-            const incomeFieldsContainer = document.getElementById('incomeFields');
-            const fieldContainer = document.createElement('div');
-            fieldContainer.classList.add('field-container');
-            fieldContainer.innerHTML = `
-                <label for="income${fieldCount}">Year ${fieldCount} Income/Expense:</label>
-                <input type="number" id="income${fieldCount}" name="income${fieldCount}" required>
-            `;
-            incomeFieldsContainer.appendChild(fieldContainer);
+function addIncomeField(projectIndex) {
+    const incomeFieldsContainer = document.getElementById(`incomeFields${projectIndex}`);
+    const fieldCount = incomeFieldsContainer.children.length;
+    const fieldContainer = document.createElement('div');
+    fieldContainer.classList.add('field-container');
+    fieldContainer.innerHTML = `
+        <label for="income${projectIndex}-${fieldCount}">Year ${fieldCount} Income/Expense:</label>
+        <input type="number" id="income${projectIndex}-${fieldCount}" name="income${projectIndex}-${fieldCount}" required>
+    `;
+    incomeFieldsContainer.appendChild(fieldContainer);
 }
 
 function calculateNPV(rate) {
