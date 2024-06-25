@@ -1,5 +1,30 @@
 let fieldCount = -1;
 
+function generateProjectForms() {
+    const numProjects = parseInt(document.getElementById('numProjects').value);
+    const projectsContainer = document.getElementById('projectsContainer');
+    projectsContainer.innerHTML = '';
+    for (let i = 0; i < numProjects; i++) {
+        projectsContainer.innerHTML += `
+            <div class="project-container" id="project${i}">
+                <h3>Project ${i + 1}</h3>
+                <div class="field-container">
+                    <label for="years${i}">Enter number of years:</label>
+                    <input type="number" id="years${i}" name="years${i}" min="1" required>
+                </div>
+                <div class="field-container">
+                    <label for="rate${i}">Enter discount rate (%):</label>
+                    <input type="number" id="rate${i}" name="rate${i}" step="0.01" required>
+                </div>
+                <div id="incomeFields${i}" class="field-container"></div>
+                <div class="button-container">
+                    <button type="button" onclick="addIncomeField(${i})">Add Income/Expense</button>
+                </div>
+            </div>
+        `;
+    }
+}
+
 function addIncomeField() {
             fieldCount++;
             const incomeFieldsContainer = document.getElementById('incomeFields');
