@@ -21,6 +21,24 @@ function calculateNPV(rate) {
     return npv;
 }
 
+function calculateIRR() {
+    let lowerRate = 0;
+    let upperRate = 1;
+    let guessRate = 0.5;
+    let npv = calculateNPV(guessRate);
+
+    while (Math.abs(npv) > 0.01) {
+        if (npv > 0) {
+            lowerRate = guessRate;
+        } else {
+            upperRate = guessRate;
+        }
+        guessRate = (lowerRate + upperRate) / 2;
+        npv = calculateNPV(guessRate);
+    }
+    return guessRate * 100;
+}
+
 function calculateAPandROI() {
     const years = document.getElementById('years').value;
     let totalIncome = 0;
