@@ -12,6 +12,15 @@ function addIncomeField() {
             incomeFieldsContainer.appendChild(fieldContainer);
 }
 
+function calculateNPV(rate) {
+    let npv = 0;
+    for (let i = 0; i <= fieldCount; i++) {
+        const amount = parseFloat(document.getElementById(`income${i}`).value);
+        npv += amount / Math.pow((1 + rate), i);
+    }
+    return npv;
+}
+
 function calculateAPandROI() {
     const years = document.getElementById('years').value;
     let totalIncome = 0;
