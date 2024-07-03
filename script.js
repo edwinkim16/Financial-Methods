@@ -116,3 +116,9 @@ function calculate() {
         `;
     }
 }
+
+function resetForm() {
+    document.getElementById('numProjects').value = '';
+    document.getElementById('projectsContainer').innerHTML = '';
+    document.getElementById('resultsContainer').innerHTML = '';
+}
