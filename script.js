@@ -64,39 +64,55 @@ function calculateIRR() {
     return guessRate * 100;
 }
 
-function calculateAPandROI() {
-    const years = document.getElementById('years').value;
-    const rate = parseFloat(document.getElementById('rate').value) / 100;
-    let totalIncome = 0;
-    let totalExpenses = 0;
-    let cumulativeProfit = 0;
-    let paybackPeriod = -1;
-    let npv = 0;
+function calculate() {
+    const numProjects = parseInt(document.getElementById('numProjects').value);
+    const resultsContainer = document.getElementById('resultsContainer');
+    resultsContainer.innerHTML = '';
 
-    for (let i = 0; i <= fieldCount; i++) {
-        const amount = parseFloat(document.getElementById(`income${i}`).value);
-        if (amount < 0) {
-            totalExpenses += Math.abs(amount);
-        } else {
-            totalIncome += amount;
+    for (let projectIndex = 0; projectIndex < numProjects; projectIndex++) {
+        const years = parseInt(document.getElementById(`years${projectIndex}`).value);
+        const rate = parseFloat(document.getElementById(`rate${projectIndex}`).value) / 100;
+        let totalIncome = 0;
+        let totalExpenses = 0;
+        let cumulativeProfit = 0;
+        let paybackPeriod = -1;
+        let npv = 0;
+
+        const incomeFieldsContainer = document.getElementById(`incomeFields${projectIndex}`);
+        const fieldCount = incomeFieldsContainer.children.length;
+        for (let i = 0; i < fieldCount; i++) {
+            const amount = parseFloat(document.getElementById(`income${projectIndex}-${i}`).value);
+            const discountedValue = amount / Math.pow((1 + rate), i);
+
+            if (amount < 0) {
+                totalExpenses += Math.abs(amount);
+            } else {
+                totalIncome += amount;
+            }
+
+            npv += discountedValue;
+
+            cumulativeProfit += amount;
+            if (cumulativeProfit >= totalExpenses && paybackPeriod === -1) {
+                paybackPeriod = i;
+            }
         }
-        cumulativeProfit += amount;
-                if (cumulativeProfit >= totalExpenses && paybackPeriod === -1) {
-                    paybackPeriod = i;
-                }
+
+        const annualProfit = (totalIncome - totalExpenses) / years;
+        const ROI = totalExpenses > 0 ? (annualProfit / totalExpenses) * 100 : 0;
+        const IRR = calculateIRR(projectIndex);
+
+        resultsContainer.innerHTML += `
+            <div class="message">
+                <h3>Results for Project ${projectIndex + 1}</h3>
+                Total Income: <span class="income">$${totalIncome.toFixed(2)}</span><br>
+                Total Expenses: <span class="expense">$${totalExpenses.toFixed(2)}</span><br>
+                Annual Profit: <span class="income">$${annualProfit.toFixed(2)}</span><br>
+                ROI: <span class="income">${ROI.toFixed(2)}%</span><br>
+                Payback Period: <span class="income">${paybackPeriod >= 0 ? paybackPeriod : 'Not achieved'}</span><br>
+                NPV: <span class="income">$${npv.toFixed(2)}</span><br>
+                IRR: <span class="income">${IRR.toFixed(2)}%</span>
+            </div>
+        `;
     }
-    const annualProfit = (totalIncome - totalExpenses) / years;
-    const ROI = totalExpenses > 0 ? (annualProfit / totalExpenses) * 100 : 0;
-    const IRR = calculateIRR();     
-
-            const messageDiv = document.getElementById('message');
-            messageDiv.innerHTML = `Total Income: <span class="income">$${totalIncome.toFixed(2)}</span><br>
-                                    Total Expenses: <span class="expense">$${totalExpenses.toFixed(2)}</span><br>
-                                    Annual Profit: <span class="income">$${annualProfit.toFixed(2)}</span><br>
-                                    ROI: <span class="income">${ROI.toFixed(2)}%</span>;<br>
-                                    Payback Period: <span class="income">${paybackPeriod >= 0 ? paybackPeriod : 'Not achieved'}</span><br>
-                                    NPV: <span class="income">$${npv.toFixed(2)}</span><br>
-                                    IRR: <span class="income">${IRR.toFixed(2)}%</span>`;
-                                   
-
-}    
+}
