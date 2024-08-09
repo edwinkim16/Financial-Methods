@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f0f4f8;
     margin: 0;
     padding: 0;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -81,4 +83,9 @@ h2 {
         width: 100%;
         margin-bottom: 10px;
     }
+}
+.footer{
+    margin-left: 600px;
+    justify-content: center;
+    align-items: center;
 }
