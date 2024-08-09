@@ -13,7 +13,7 @@ function generateProjectForms() {
                     <input type="number" id="years${i}" name="years${i}" min="1" required>
                 </div>
                 <div class="field-container">
-                    <label for="rate${i}">Enter discount rate (%):</label>
+                    <label for="rate${i}">Enter inflation rate (%):</label>
                     <input type="number" id="rate${i}" name="rate${i}" step="0.01" required>
                 </div>
                 <div id="incomeFields${i}" class="field-container"></div>
