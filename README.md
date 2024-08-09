@@ -1,6 +1,6 @@
 # {Financial Methods}
 #### {Here you get to know various financial methods used in Software Project}, {July 2024}
-#### By **Edwin Kimathi** **Daisy Chemutai** **Elizabeth Wanyama**
+#### By **Edwin Kimathi,**  **Daisy Chemutai,**  **Elizabeth Wanyama**
 ## Description
 The main purpose of this website is help you calculate financial methods
 ## Setup/Installation Requirements
